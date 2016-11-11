@@ -1,6 +1,6 @@
 import React from 'react'
 import {App} from './views/app'
-import {Mainpage} from './components/mainpage'
+import {Mainpage} from './views/mainpage'
 import {
 	Router,
 	Link,

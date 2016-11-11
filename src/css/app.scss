@@ -1,0 +1,9 @@
+.container{
+	display: flex;
+	width: 100%;
+	.router-view{
+		display: flex;
+		flex: 1;
+		width: 100%;
+	}
+}

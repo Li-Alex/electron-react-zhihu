@@ -2,6 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import {Sidebar} from '../components/sidebar'
 
+require('../css/app.scss')
+
 import {
 	IndexRoute,
 	Router,
