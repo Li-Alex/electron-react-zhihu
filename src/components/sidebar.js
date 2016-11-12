@@ -12,7 +12,7 @@ export class Sidebar extends React.Component {
 						<Link className="menu-btn mainpage-btn active" to="/main">首</Link>
 					</li>
 					<li>
-						<a className="menu-btn more-btn iconfont icon-caidan" href="javascript:;"></a>
+						<Link className="menu-btn more-btn iconfont icon-caidan" to="/theme"></Link>
 					</li>
 				</ul>
 			</div>

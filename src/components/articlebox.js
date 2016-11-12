@@ -1,39 +1,23 @@
 import React from 'react'
 
+require('../css/articlebox.scss')
+
 export class Articlebox extends React.Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			totalData: {}
-		}
-	}
-	componentDidMount(){
-		this.getData()
-	}
-	getData(){
-		let newsUrl = 'http://localhost:3333/getNews'
-		let headers = new Headers()
-		fetch(newsUrl,{
-			method: 'get',
-			mode: 'cors',
-			headers: headers,
-			cache: 'default'
-		}).then(res => {
-			return res.json()
-		}).then(json => {
-			this.setState({
-				totalData: json
-			})
-			console.log(this.state.totalData)
-		})
-	}
 	render(){
-		let data = this.state.totalData.stories || []
+		let data = this.props.articleData
 		return(
 			<div className="article-box">
-				{data.map(item => {
-					return <p>{item.title}</p>
-				})}
+				<div className="content-box">
+					<a href="javascript:;" className="title">
+						{data.title}
+					</a>
+					<span className="link">
+						原文链接: <a href={'http://daily.zhihu.com/story/' + data.id}>{'http://daily.zhihu.com/story/'+data.id}</a>
+					</span>
+				</div>
+				<div className="img-box">
+					<img src={data.images[0]} />
+				</div>
 			</div>
 		)
 	}
