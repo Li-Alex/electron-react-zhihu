@@ -91,7 +91,11 @@ app.get('/getNewsDetail',(req,res) => {
 //获取主题列表
 app.get('/getMenu', (req,res) => {
 	request.get(menuUrl, (err,responce) => {
-		res.send(responce.body)
+		let data = JSON.parse(responce.body)
+		for(let i = 0,len = data.others.length; i < len; i++){
+			data.others[i].thumbnail = changeUrl(data.others[i].thumbnail)
+		}
+		res.send(data)
 	})
 })
 //获取主题文章列表

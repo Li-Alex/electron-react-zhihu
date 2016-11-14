@@ -1,3 +1,16 @@
 .themepage-box{
+	display: flex;
 	margin-left: 45px;
+	padding-bottom: 20px;	
+	width: 100%;
+	.themebox-wrapper{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 0 auto;
+		width: 80%;
+		.img-cover{
+			background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))
+		}
+	}
 }

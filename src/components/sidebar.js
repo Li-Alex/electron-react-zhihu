@@ -9,10 +9,10 @@ export class Sidebar extends React.Component {
 			<div className="sidebar-box">
 				<ul>
 					<li>
-						<Link className="menu-btn mainpage-btn active" to="/main">首</Link>
+						<Link className="menu-btn mainpage-btn" activeClassName="active" to="/main">首</Link>
 					</li>
 					<li>
-						<Link className="menu-btn more-btn iconfont icon-caidan" to="/theme"></Link>
+						<Link className="menu-btn more-btn iconfont icon-caidan" activeClassName="active" to="/theme"></Link>
 					</li>
 				</ul>
 			</div>
