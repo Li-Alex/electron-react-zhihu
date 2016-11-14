@@ -1,9 +1,14 @@
 .detail-box{
 	margin: 20px auto 0;
 	padding-left: 45px;
-	width: 65%;
+	padding-bottom: 40px;
+	width: 60%;
 	line-height: 24px;
 	font-family: '微软雅黑';
+	.content-box{
+		padding: 0 0 20px;
+		margin-top: 20px;
+	}
 	.title-box{
 		font-size: 32px;
 		font-weight: bold;
@@ -19,22 +24,54 @@
 			margin-right: 15px;
 		}
 	}
-	p{
-		text-indent: 31px;
+	.img-box img{
+		width: 100%;
+		max-width: 400px;
+	}
+	.comment-tips{
+		padding: 18px 0;
+		margin-bottom: 15px;
+		color: #999;
+		border-top: 1px solid #d9d9d9;
+		border-bottom: 1px solid #d9d9d9;
+	}
+	.view-more{
+		margin: 5px 0 0;
+		padding-right: 10px;
+		text-align: right;
+		font-size: 14px;
 	}
 	.meta{
+		margin: 10px 0 -5px;
 		font-weight: bold;
 		line-height: 34px;
-		.autor{
+		span{
+			color: #555;
+			font-size: 14px;
 			vertical-align: top;
 		}
 		img{
 			display: inline-block;
 		}
 	}
+	.iconfont{
+		font-size: 14px;
+		margin-right: 5px;
+		&.icon-likefill{
+			color: #d32f2f;
+		}
+	}
+	p{
+		text-indent: 31px;
+	}
+	a{
+		text-decoration: underline;
+		color: #01579b;
+	}
 	img{
 		display: block;
 		margin: 0 auto;
+		max-width: 450px;
 		cursor: pointer;
 	}
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Commentbox} from '../components/commentbox'
 
 require('../css/articleDetail.scss')
 
@@ -20,11 +21,11 @@ export class ArticleDetail extends React.Component{
 				this.setState({articleData: data})
 			}
 		})
-
 	}
 	render(){
 		let data = this.state.articleData
 		data.extra ? '' : data.extra = {}
+		let comments = data.extra.comments || []
 		return(
 			<div className="detail-box">
 				<div className="title-box">
@@ -32,16 +33,26 @@ export class ArticleDetail extends React.Component{
 				</div>
 				<div className="extra-box">
 					<span>
-						点赞:{data.extra.popularity}
+						<i className="iconfont icon-likefill"></i>{data.extra.popularity}
 					</span>
 					<span>
-						短评论:{data.extra.short_comments}
+						<i className="iconfont icon-liuyan"></i>{data.extra.short_comments}
 					</span>
 				</div>
 				<div className="img-box">
-
+					<img src={data.extra.image} />
 				</div>
 				<div className="content-box" dangerouslySetInnerHTML={{__html: data.body}} />
+				<div className="comment-wrapper">
+					<div className="comment-tips">
+						{data.extra.short_comments}条短评论
+					</div>
+					{
+						comments.map(item => {
+							return <Commentbox comments={item} key={item.id}/>
+						})
+					}
+				</div>
 			</div>
 		)
 	}
