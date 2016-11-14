@@ -4,9 +4,10 @@ const request = require('request')
 const fs = require('fs')
 const {setImgUrl,changeUrl} = require('./appFunc.js')
 const cors = require('cors')
-
+const bodyParser = require('body-parser')
 const app = express()
 
+app.use(bodyParser.json())
 app.use(cors())
 // app.use(function(req, res, next) {
 //     res.set({

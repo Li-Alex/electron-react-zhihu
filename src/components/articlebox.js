@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router'
 require('../css/articlebox.scss')
 
 export class Articlebox extends React.Component{
@@ -8,9 +8,9 @@ export class Articlebox extends React.Component{
 		return(
 			<div className="article-box">
 				<div className="content-box">
-					<a href="javascript:;" className="title">
+					<Link to={'main/story/' + data.id} className="title">
 						{data.title}
-					</a>
+					</Link>
 					<span className="link">
 						原文链接: <a href={'http://daily.zhihu.com/story/' + data.id}>{'http://daily.zhihu.com/story/'+data.id}</a>
 					</span>

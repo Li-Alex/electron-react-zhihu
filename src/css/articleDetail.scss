@@ -1,0 +1,40 @@
+.detail-box{
+	margin: 20px auto 0;
+	padding-left: 45px;
+	width: 65%;
+	line-height: 24px;
+	font-family: '微软雅黑';
+	.title-box{
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 1.5;
+		color: #555;
+	}
+	.extra-box{
+		margin: 20px 0;
+		color: #555;
+		line-height: 20px;
+		font-size: 14px;
+		span{
+			margin-right: 15px;
+		}
+	}
+	p{
+		text-indent: 31px;
+	}
+	.meta{
+		font-weight: bold;
+		line-height: 34px;
+		.autor{
+			vertical-align: top;
+		}
+		img{
+			display: inline-block;
+		}
+	}
+	img{
+		display: block;
+		margin: 0 auto;
+		cursor: pointer;
+	}
+}
