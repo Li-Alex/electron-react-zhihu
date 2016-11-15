@@ -1,7 +1,7 @@
 import React from 'react'
 import {Bgbox} from '../components/bgbox'
 import {Articlebox} from '../components/articlebox'
-
+import {Loading} from '../components/loading'
 require('../css/mainpage.scss')
 
 export class Mainpage extends React.Component{
@@ -28,11 +28,11 @@ export class Mainpage extends React.Component{
 			this.setState({
 				totalData: json
 			})
-			console.log(this.state.totalData)
 		})
 	}
 	render(){
-		let data = this.state.totalData.stories || []
+		if(!this.state.totalData.stories) return(<Loading />)
+		let data = this.state.totalData.stories
 		let time = new Date()
 		let today = time.toLocaleString().split(' ')[0]
 		today = today.split('/')

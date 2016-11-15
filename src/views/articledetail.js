@@ -1,5 +1,7 @@
 import React from 'react'
+import {Link} from 'react-router'
 import {Commentbox} from '../components/commentbox'
+import {Loading} from '../components/loading'
 
 require('../css/articleDetail.scss')
 
@@ -24,10 +26,11 @@ export class ArticleDetail extends React.Component{
 	}
 	render(){
 		let data = this.state.articleData
-		data.extra ? '' : data.extra = {}
-		let comments = data.extra.comments || []
+		if(!data.extra) return(<Loading />)
+		let comments = data.extra.comments
 		return(
 			<div className="detail-box">
+				<Link className="close-btn" to="/main"><i className="iconfont icon-close"></i></Link>
 				<div className="title-box">
 					{data.extra.title}
 				</div>

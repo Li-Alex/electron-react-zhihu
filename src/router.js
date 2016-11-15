@@ -8,17 +8,18 @@ import {
 	Link,
 	Route,
 	Redirect,
-	browserHistory 
+	browserHistory,
+	IndexRedirect
 } from 'react-router'
 
 const RouterConfig = (
 	<Router history={browserHistory}>
 		<Route path="/" component={App}>
+			<IndexRedirect to="/main" />
 			<Route path="main" component={Mainpage} />
 			<Route path="main/story/:id" component={ArticleDetail} />
 			<Route path="theme" component={Themepage} />
 		</Route>
-		<Redirect from="/" to="main" />
 	</Router>
 )
 export default RouterConfig

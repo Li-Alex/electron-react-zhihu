@@ -1,5 +1,6 @@
 import React from 'react'
 import {Themebox} from '../components/themebox'
+import {Loading} from '../components/loading'
 
 require('../css/themepage.scss')
 
@@ -23,7 +24,8 @@ export class Themepage extends React.Component{
 		})
 	}
 	render(){
-		let data = this.state.themeData.others || []
+		if(!this.state.themeData.others) return(<Loading />)
+		let data = this.state.themeData.others
 		return(
 			<div className="themepage-box">
 				<div className="themebox-wrapper">
