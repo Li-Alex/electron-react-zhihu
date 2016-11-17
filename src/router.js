@@ -9,15 +9,14 @@ import {
 	Route,
 	Redirect,
 	browserHistory,
-	IndexRedirect
+	IndexRoute
 } from 'react-router'
 
 const RouterConfig = (
 	<Router history={browserHistory}>
 		<Route path="/" component={App}>
-			<IndexRedirect to="/main" />
-			<Route path="main" component={Mainpage} />
-			<Route path="main/story/:id" component={ArticleDetail} />
+			<IndexRoute component={Mainpage} />
+			<Route path="story/:id" component={ArticleDetail} />
 			<Route path="theme" component={Themepage} />
 		</Route>
 	</Router>

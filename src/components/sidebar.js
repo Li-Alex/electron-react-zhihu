@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link,IndexLink} from 'react-router'
 
 require('../css/sidebar.scss')
 
@@ -9,7 +9,7 @@ export class Sidebar extends React.Component {
 			<div className="sidebar-box">
 				<ul>
 					<li>
-						<Link className="menu-btn mainpage-btn" activeClassName="active" to="/main">首</Link>
+						<IndexLink className="menu-btn mainpage-btn" activeClassName="active" to="/">首</IndexLink>
 					</li>
 					<li>
 						<Link className="menu-btn more-btn iconfont icon-caidan" activeClassName="active" to="/theme"></Link>

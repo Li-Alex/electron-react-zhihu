@@ -8,7 +8,7 @@ export class Articlebox extends React.Component{
 		return(
 			<div className="article-box">
 				<div className="content-box">
-					<Link to={'main/story/' + data.id} className="title">
+					<Link to={'/story/' + data.id} className="title">
 						{data.title}
 					</Link>
 					<span className="link">

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {IndexLink} from 'react-router'
 import {Commentbox} from '../components/commentbox'
 import {Loading} from '../components/loading'
 
@@ -30,7 +30,7 @@ export class ArticleDetail extends React.Component{
 		let comments = data.extra.comments
 		return(
 			<div className="detail-box">
-				<Link className="close-btn" to="/main"><i className="iconfont icon-close"></i></Link>
+				<IndexLink className="close-btn" to="/"><i className="iconfont icon-close"></i></IndexLink>
 				<div className="title-box">
 					{data.extra.title}
 				</div>
