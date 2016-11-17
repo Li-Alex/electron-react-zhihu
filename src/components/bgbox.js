@@ -25,7 +25,6 @@ export class Bgbox extends React.Component{
 		fetch(imgUrl,fetchInit).then(res => {
 			res.json().then(data =>{
 				data.fileName = data.fileName.length ? data.fileName:'test'
-				console.log(data.fileName)
 				this.setState({
 					bgUrl: '../static/images/' + data.fileName + '.png'
 				})

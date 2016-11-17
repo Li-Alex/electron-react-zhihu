@@ -18,6 +18,7 @@ const RouterConfig = (
 			<IndexRoute component={Mainpage} />
 			<Route path="story/:id" component={ArticleDetail} />
 			<Route path="theme" component={Themepage} />
+			<Route path="theme/:id" component={Mainpage}></Route>
 		</Route>
 	</Router>
 )

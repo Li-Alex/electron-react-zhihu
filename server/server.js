@@ -100,8 +100,8 @@ app.get('/getMenu', (req,res) => {
 	})
 })
 //获取主题文章列表
-app.get('/getThemeDetail',(req,res) => {
-	let themeId = req.query.id
+app.get('/getThemeDetail/:id',(req,res) => {
+	let themeId = req.params.id
 	request.get(themeDetail + themeId,(err,responce) => {
 		let data = JSON.parse(responce.body)
 		data.background = changeUrl(data.background)

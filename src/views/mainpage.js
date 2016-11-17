@@ -14,10 +14,24 @@ export class Mainpage extends React.Component{
 	componentDidMount(){
 		this.getData()
 	}
-	getData(){
+	componentWillReceiveProps(nextProps){
+		if(this.props.location.pathname !== nextProps.location.pathname){
+			this.setState({totalData: {}})
+			let newsUrl = 'http://localhost:3333/getNews'
+			let themeUrl = 'http://localhost:3333/getThemeDetail/' + nextProps.params.id
+			let newResultUrl = nextProps.location.pathname.indexOf('theme') > 0 ? themeUrl : newsUrl
+			
+			this.getData(newResultUrl)
+		}
+	}
+	getData(newResultUrl){
 		let newsUrl = 'http://localhost:3333/getNews'
+		let themeUrl = 'http://localhost:3333/getThemeDetail/' + this.props.params.id
+		let resultUrl = this.props.location.pathname.indexOf('theme') > 0 ? themeUrl : newsUrl
+		newResultUrl && (resultUrl = newResultUrl)
 		let headers = new Headers()
-		fetch(newsUrl,{
+
+		fetch(resultUrl,{
 			method: 'get',
 			mode: 'cors',
 			headers: headers,

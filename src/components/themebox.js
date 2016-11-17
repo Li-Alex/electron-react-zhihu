@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router'
 require('../css/themebox.scss')
 
 export class Themebox extends React.Component{
@@ -57,9 +57,9 @@ export class Themebox extends React.Component{
 		}
 		return(
 			<div className="themebox" style={themebox}>
-				<div className="box-cover">
+				<Link className="box-cover" to={'/theme/' + item.id}>
 					<button className="see-more-btn">查看更多</button>
-				</div>
+				</Link>
 				<div className="imgbox" style={imgbox}>
 					<div className="img" style={img}></div>
 					<div className="img-cover" style={imgCover}></div>

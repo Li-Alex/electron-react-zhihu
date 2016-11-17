@@ -8,7 +8,6 @@ require('../css/articleDetail.scss')
 export class ArticleDetail extends React.Component{
 	constructor(props,context){
 		super(props,context)
-		console.log(context)
 		this.state = {
 			articleId: this.props.params.id,
 			articleData: {}
