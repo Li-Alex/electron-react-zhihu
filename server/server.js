@@ -9,12 +9,6 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(cors())
-// app.use(function(req, res, next) {
-//     res.set({
-//         'Access-Control-Allow-Origin': '*'
-//     })
-//     next()
-// })
 
 var imgUrl = 'http://news-at.zhihu.com/api/4/start-image/1080*1776',
 	newsUrl = 'http://news-at.zhihu.com/api/4/news/latest',
@@ -60,35 +54,62 @@ app.get('/getNews',(req,res) => {
 		res.send(data)
 	})
 })
+
 //获取文章详情
 app.get('/getNewsDetail',(req,res) => {
+	let data = {}
+	let extra = {}
 	let detailId = req.query.id 
-	let data = {} //整合需要返回的内容
 
-	request.get(detailUrl+detailId, (err,responce) => {
-		request.get(detailUrl + detailId + '/short-comments',(err2,responce2) => {
-			request.get(extraDetail + detailId, (err3,responce3) => {
-				let result = JSON.parse(responce.body),
-					result2 = JSON.parse(responce2.body),
-					result3 = JSON.parse(responce3.body)
-
-				for(let i = 0,len = result2.comments.length; i < len; i++){
-					result2.comments[i].avatar = changeUrl(result2.comments[i].avatar)
+	let getDetailData = function(){
+		return new Promise((resolve,reject) => {
+			request.get(detailUrl + detailId, (err,responce) => {
+				if(!err){
+					let result = JSON.parse(responce.body)
+					data.body = setImgUrl(result.body)
+					extra.title = result.title
+					extra.image = result.image ? changeUrl(result.image) : ''
+					resolve()
 				}
-				let extra = {
-					popularity: result3.popularity,
-					short_comments: result3.short_comments,
-					title: result.title,
-					image: result.image ? changeUrl(result.image) : '',
-					comments : result2.comments
-				}
-				data.body = setImgUrl(JSON.parse(responce.body).body)
-				data.extra = extra
-				res.send(data)
 			})
 		})
+	}
+	let getCommentData = function(){
+		return new Promise((resolve,reject) => {
+			request.get(detailUrl + detailId + '/short-comments',(err,responce) => {
+				if(!err){
+					let result = JSON.parse(responce.body)
+					for(let i = 0,len = result.comments.length; i < len; i++){
+						result.comments[i].avatar = changeUrl(result.comments[i].avatar)
+					}
+					extra.comments = result.comments
+					resolve()
+				}
+			})
+		})
+	}
+	let getExtraData = function(){
+		return new Promise((resolve,reject) => {
+			request.get(extraDetail + detailId,(err,responce) => {
+				if(!err){
+					let result = JSON.parse(responce.body)
+					extra.popularity = result.popularity,
+					extra.short_comments = result.short_comments,
+					data.extra = extra
+					resolve(data)
+				}
+			})
+		})
+	}
+	getDetailData().then(_ => {
+		return getCommentData()
+	}).then(_ => {
+		return getExtraData()
+	}).then(data => {
+		res.send(data)
 	})
 })
+ 
 //获取主题列表
 app.get('/getMenu', (req,res) => {
 	request.get(menuUrl, (err,responce) => {
