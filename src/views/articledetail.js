@@ -6,8 +6,9 @@ import {Loading} from '../components/loading'
 require('../css/articleDetail.scss')
 
 export class ArticleDetail extends React.Component{
-	constructor(props){
-		super(props)
+	constructor(props,context){
+		super(props,context)
+		console.log(context)
 		this.state = {
 			articleId: this.props.params.id,
 			articleData: {}
@@ -24,13 +25,17 @@ export class ArticleDetail extends React.Component{
 			}
 		})
 	}
+	
+	goBack(){
+		this.context.router.goBack(-1)
+	}
 	render(){
 		let data = this.state.articleData
 		if(!data.extra) return(<Loading />)
 		let comments = data.extra.comments
 		return(
 			<div className="detail-box">
-				<IndexLink className="close-btn" to="/"><i className="iconfont icon-close"></i></IndexLink>
+				<a className="close-btn" onClick={this.goBack.bind(this)}><i className="iconfont icon-close"></i></a>
 				<div className="title-box">
 					{data.extra.title}
 				</div>
@@ -59,4 +64,7 @@ export class ArticleDetail extends React.Component{
 			</div>
 		)
 	}
+}
+ArticleDetail.contextTypes = {
+	router: React.PropTypes.object
 }
