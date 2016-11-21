@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 var imgUrl = 'http://news-at.zhihu.com/api/4/start-image/1080*1776',
-	newsUrl = 'http://news-at.zhihu.com/api/4/news/latest',
+	newsUrl = 'http://news-at.zhihu.com/api/4/news/before/',//加上日期，如20161122，则表示查询21号的文章
 	detailUrl = 'http://news-at.zhihu.com/api/4/news/',
 	extraDetail = 'http://news-at.zhihu.com/api/4/story-extra/',
 	//shortCommentUrl = detailUrl + id + short-comments //长评论则为long-comments
@@ -44,8 +44,9 @@ app.get('/getImage',(req,res) => {
 })
 
 //获取首页最新文章列表
-app.get('/getNews',(req,res) => {
-	request.get(newsUrl,(err,responce) => {
+app.get('/getNews/:date',(req,res) => {
+	let date = req.params.date
+	request.get(newsUrl + date,(err,responce) => {
 		//date: 时间，stories:[{title,id,images:{}}]
 		let data = JSON.parse(responce.body)
 		for(let i = 0, len = data.stories.length; i < len; i++){

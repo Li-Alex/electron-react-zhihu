@@ -8,7 +8,8 @@ export class Mainpage extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			totalData: {}
+			totalData: {},
+			time: new Date()
 		}
 	}
 	componentDidMount(){
@@ -17,7 +18,9 @@ export class Mainpage extends React.Component{
 	componentWillReceiveProps(nextProps){
 		if(this.props.location.pathname !== nextProps.location.pathname){
 			this.setState({totalData: {}})
-			let newsUrl = 'http://localhost:3333/getNews'
+			this.state.time.setDate(this.state.time.getDate() + 1)
+			let date = this.state.time.toLocaleDateString().replace(/\//g,'')
+			let newsUrl = 'http://localhost:3333/getNews/' + date
 			let themeUrl = 'http://localhost:3333/getThemeDetail/' + nextProps.params.id
 			let newResultUrl = nextProps.location.pathname.indexOf('theme') > 0 ? themeUrl : newsUrl
 			
@@ -25,7 +28,9 @@ export class Mainpage extends React.Component{
 		}
 	}
 	getData(newResultUrl){
-		let newsUrl = 'http://localhost:3333/getNews'
+		this.state.time.setDate(this.state.time.getDate() + 1)
+		let date = this.state.time.toLocaleDateString().replace(/\//g,'')
+		let newsUrl = 'http://localhost:3333/getNews/' + date
 		let themeUrl = 'http://localhost:3333/getThemeDetail/' + this.props.params.id
 		let resultUrl = this.props.location.pathname.indexOf('theme') > 0 ? themeUrl : newsUrl
 		newResultUrl && (resultUrl = newResultUrl)
@@ -45,6 +50,7 @@ export class Mainpage extends React.Component{
 		})
 	}
 	render(){
+		console.log('render')
 		if(!this.state.totalData.stories) return(<Loading />)
 		let data = this.state.totalData.stories
 		let time = new Date()
